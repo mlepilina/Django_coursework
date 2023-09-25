@@ -1,0 +1,35 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+<h2 class="pb-2 text-center">Сайт для рассылок</h2>
+<h4 class="pb-2 text-center">Внимание! Если вы авторизуетесь первый раз - сначала подтвердите почту, </h4>
+<h4 class="pb-2 text-center">перейдя по ссылке из отправленного Вам письма!</h4>
+
+<br />
+<br />
+
+<div class="col-12">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Вход</h2>
+                </div>
+                <div class="card-body text-center">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Войти</button>
+
+                </div>
+                <button type="button" class="btn btn-warning"><a href="{% url 'users:password_reset' %}" class="nav-link px-2">Забыл пароль</a></button>
+                <div class="card-footer"></div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <button type="button" class="w-30 btn btn-lg btn-outline-primary text-center"><a href="{% url 'management_service:client_create' %}" class="nav-link px-2">Создать нового клиента</a></button>
+    {% endif %}
+
+    <h1 class="pb-4 text-center">Просмотр клиентов</h1>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        {% for client in object_list %}
+          {% if request.user == client.owner %}
+              <div class="col-md-12">
+                <div class="card mb-4 rounded-3 shadow-sm ">
+                    <div class="card-header py-3">
+                    <h5 class="my-0 fw-normal">
+                        {{ 'Имя:'}} {{ client.name }}
+                        {{ 'Фамилия:'}} {{ client.surname }}
+                    </h5>
+                    <h5 class="my-0 fw-normal">
+                        {{ 'Почтовый адрес:'}} {{ client.email }}
+                    </h5>
+                  </div>
+                  <div class="card-body">
+                    <button type="button" class="w-30 btn btn-lg btn-outline-primary"><a href="one_client_view/{{ client.id }}" class="nav-link px-2">Подробнее</a></button>
+                  </div>
+                </div>
+              </div>
+          {% endif %}
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}

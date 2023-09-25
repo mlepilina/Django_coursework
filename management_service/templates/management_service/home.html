@@ -1,0 +1,37 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h1 class="pb-4 text-center">Сайт для рассылок и статей</h1>
+    <br />
+    <h4 class="card-title fst-italic text-center">Создание рассылок доступно только авторизованным пользователям!</h4>
+    <h4 class="card-title fst-italic text-center">(Кнопки регистрации и входа в правом верхнем углу страницы)</h4>
+
+    <br />
+    <br />
+    <h4 class="card-title fst-italic">Общее количество рассылок: {{mailing_count}}</h4>
+    <h4 class="card-title fst-italic">Количество запущенных рассылок: {{active_mailing_count}}</h4>
+    <h6></h6>
+    <h1 class="pb-4 text-center">Случайные статьи</h1>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        {% for article in object_list %}
+          <div class="col-md-12">
+            <div class="card mb-4 rounded-3 shadow-sm ">
+              <div class="card-header py-3">
+                <h5 class="my-0 fw-normal">{{ 'Дата публикации:'}} {{ article.date_of_publication }} {{ 'Количество просмотров:'}} {{ article.number_of_views }}</h5>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title pricing-card-title">{{ article.title }}</h3>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>{{ article.content|truncatechars:400 }}</li>
+                </ul>
+                <button type="button" class="w-30 btn btn-lg btn-outline-primary"><a href="article_view/{{ article.id }}" class="nav-link px-2">Читать</a></button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    <h4 class="card-title fst-italic">Количество созданных клиентов: {{clients_count}}</h4>
+<h4></h4>
+
+
+{% endblock %}

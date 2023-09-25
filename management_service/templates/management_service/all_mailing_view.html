@@ -1,0 +1,30 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h4 class="card-title fst-italic">Количество рассылок: {{mailing_count}}</h4>
+    <h4 class="card-title fst-italic">Количество запущенных рассылок: {{active_mailing_count}}</h4>
+
+    <h1 class="pb-4 text-center">Просмотр рассылок</h1>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        {% for mailing in object_list %}
+          <div class="col-md-12">
+            <div class="card mb-4 rounded-3 shadow-sm ">
+                <div class="card-header py-3">
+                <h5 class="my-0 fw-normal">{{ 'Время рассылки:'}} {{ mailing.mailing_time }} {{ 'Статус рассылки:'}} {{ mailing.mailing_status }}</h5>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ mailing.message }}</h1>
+                <button type="button" class="w-30 btn btn-lg btn-outline-primary"><a href="one_mailing_view/{{ mailing.id }}" class="nav-link px-2">Подробнее</a></button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+    {% if user.is_authenticated %}
+        <button type="button" class="btn btn-outline-primary me-2"><a href="{% url 'management_service:all_clients_view' %}" class="nav-link px-2">Посмотреть доступных клиентов</a></button>
+    {% endif %}
+
+    </div>
+
+
+{% endblock %}

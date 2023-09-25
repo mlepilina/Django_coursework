@@ -1,0 +1,39 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h1 class="pb-2 text-center">Сайт для рассылок</h1>
+
+    <div class="row row-cols-1 row-cols-md-1 mb-3 text-center">
+      <div class="col">
+                <div class="card mb-4 rounded-3 shadow-lg">
+          <div class="card-header py-3">
+            <h2 class="my-0 fw-normal">Рассылка {{ mailing.id }}</h2>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title fst-italic"> Время рассылки: {{ mailing.mailing_time }}</h6>
+            <h6 class="card-title fst-italic"> Периодичность рассылки: {{ mailing.mailing_frequency }}</h6>
+            <h6 class="card-title fst-italic"> Статус рассылки: {{ mailing.mailing_status }}</h6>
+
+            <table class="table table-striped text-center">
+              <tr>
+                  <th> Тема сообщения </th>
+                  <th> Текст сообщения </th>
+              </tr>
+              <tr>
+                  <td>{{ mailing.message }}</td>
+                  <td>{{ mailing.message.message_text }}</td>
+              </tr>
+            </table>
+            <button type="button" class="w-50 btn btn-lg btn-outline-primary"><a href="{% url 'management_service:mailing_update' object.id %}" class="nav-link px-2">Редактировать</a></button>
+            <button type="button" class="w-50 btn btn-lg btn-outline-primary"><a href="{% url 'management_service:mailing_delete' object.id %}" class="nav-link px-2">Удалить</a></button>
+            {% if user.is_staff %}
+                <button type="button" class="w-50 btn btn-lg btn-outline-primary"><a href="{% url 'management_service:change_mailing_status' object.id %}" class="nav-link px-2">Изменить статус</a></button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+{% endblock %}

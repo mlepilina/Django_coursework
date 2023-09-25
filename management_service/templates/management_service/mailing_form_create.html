@@ -1,0 +1,27 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h1 class="pb-2 text-center">Сайт для рассылок</h1>
+        <div class="row row-cols-1 row-cols-md-1 mb-3 text-center">
+            <div class="card mb-3 rounded-3 shadow-lg">
+              <div class="card-header py-4 mb-5">
+                <h2 class="pb-2 text-center mb-3">Страница с формой создания рассылки</h2>
+                <button type="submit" class="btn btn-success mb-3"><a href="{% url 'management_service:message_create' %}" class="nav-link px-2">Создание сообщения</a></button>
+                <button type="submit" class="btn btn-success mb-3"><a href="{% url 'management_service:client_create' %}" class="nav-link px-2">Создание клиента</a></button>
+                <div class="card mb-3 rounded-3 shadow-lg"></div>
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-success">
+                    {% if object %}
+                      Сохранить
+                    {% else %}
+                      Создать
+                    {% endif %}
+                  </button>
+                </form>
+              </div>
+            </div>
+        </div>
+
+{% endblock %}

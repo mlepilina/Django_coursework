@@ -1,0 +1,24 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h1 class="pb-2 text-center">Сайт для рассылок</h1>
+
+    <br />
+    <br />
+
+    <div class="d-grid gap-2 col-5 mx-auto">
+        <button type="button" class="btn btn-primary"><a href="{% url 'management_service:all_clients_view' %}" class="nav-link px-2">Перейти к просмотру клиентов</a></button>
+    </div>
+    <br />
+
+    <div class="d-grid gap-2 col-5 mx-auto">
+        <button type="button" class="btn btn-primary"><a href="{% url 'management_service:mailing_create' %}" class="nav-link px-2">Перейти к созданию рассылки</a></button>
+    </div>
+    <br />
+
+    <div class="d-grid gap-2 col-5 mx-auto">
+        <button type="button" class="btn btn-primary"><a href="{% url 'management_service:message_create' %}" class="nav-link px-2">Перейти к созданию сообщения</a></button>
+    </div>
+
+
+{% endblock %}

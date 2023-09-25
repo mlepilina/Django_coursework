@@ -1,0 +1,28 @@
+{% extends "management_service/base.html" %}
+
+{% block content %}
+    <h1 class="pb-2 text-center">Сайт для рассылок</h1>
+
+    <div class="row row-cols-1 row-cols-md-1 mb-3 text-center">
+      <div class="col">
+                <div class="card mb-4 rounded-3 shadow-lg">
+          <div class="card-header py-3">
+            <h2 class="my-0 fw-normal"> Клиент id-{{ client.id }}</h2>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title fst-italic"> Имя: {{ client.name }}</h6>
+            <h6 class="card-title fst-italic"> Фамилия: {{ client.surname }}</h6>
+            <h6 class="card-title fst-italic"> Отчество: {{ client.patronymic }}</h6>
+            <h6 class="card-title fst-italic"> Почтовый адрес: {{ client.email}}</h6>
+            <h6 class="card-title fst-italic"> Комментарий: {{ client.comment }}</h6>
+
+            <button type="button" class="w-50 btn btn-lg btn-outline-primary"><a href="{% url 'management_service:client_update' object.id %}" class="nav-link px-2">Редактировать</a></button>
+            <button type="button" class="w-50 btn btn-lg btn-outline-primary"><a href="{% url 'management_service:client_delete' object.id %}" class="nav-link px-2">Удалить</a></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+{% endblock %}
